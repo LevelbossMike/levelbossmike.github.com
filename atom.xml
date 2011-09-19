@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Firstiwaslike?!</title>
+  <link href="http://www.firstiwaslike.com/atom.xml" rel="self"/>
+  <link href="http://www.firstiwaslike.com/"/>
+  <updated>2011-09-19T17:14:00+02:00</updated>
+  <id>http://www.firstiwaslike.com/</id>
+  <author>
+    <name>Michael Klein</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Using Social Media Icons in a LaTeX document</title>
+    <link href="http://www.firstiwaslike.com/blog/2011/09/19/using-social-media-icons-in-a-latex-document/"/>
+    <updated>2011-09-19T10:59:00+02:00</updated>
+    <id>http://www.firstiwaslike.com/blog/2011/09/19/using-social-media-icons-in-a-latex-document</id>
+    <content type="html">&lt;p&gt;Recently I wrote a letter of application to a local software firm. With
+my letter of application I sent a CV and because I was applying for
+a position as a Ruby/Rails/Web developer writing the application in
+Word or Pages was not an option and geek cred aside, in my opinion everything of
+importance you write should be written in LaTeX just because it looks a lot nicer
+ than your everyday WYSIWYG-Editor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img836.imageshack.us/img836/6889/latexr.jpg&quot; title=&quot;LaTeX, the most beautiful thing&quot; alt=&quot;Latex a beautiful thing.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I ended up using &lt;a href=&quot;http://www.ctan.org/tex-archive/macros/latex/contrib/moderncv&quot; title=&quot;moderncv&quot;&gt;moderncv&lt;/a&gt; (the classic version) for my cv and scrlttr2 out of &lt;a href=&quot;http://www.ctan.org/tex-archive/macros/latex/contrib/moderncv&quot;&gt;komascript&lt;/a&gt; for my application
+letter.&lt;/p&gt;
+
+&lt;p&gt;moderncv comes with a header by default where you can put your contact
+information.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img4.imageshack.us/img4/2234/moderncvheader.png&quot; title=&quot;Classic moderncv header&quot; alt=&quot;default moderncv header&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I thought it would be nice to also put my GitHub and Twitter
+account data in the header. With corresponding icons of course. Surprisingly despite its serious degree of
+awesome LaTeX does not support GitHub
+or Twitter icons out of the box so I had to find a way to insert them
+manually.&lt;/p&gt;
+
+&lt;p&gt;Turns out that&amp;#8217;s pretty simple. LaTeX supports a way to include images
+and even vector graphics in text inline. You just have to specify which
+image you want to insert and the respective font-size to make it look
+seamless.&lt;/p&gt;
+
+&lt;p&gt;Assuming you have a font-size of 12pt in your text and want to
+include github&amp;#8217;s octocat (saved as octocatvector.eps) and a link to your github repository:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;github-icon inline  &lt;/span&gt;&lt;/figcaption&gt;
+ &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;latex&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;\includegraphics&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[height=12pt]&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;{&lt;/span&gt;octocatvector.eps&lt;span class=&quot;nb&quot;&gt;}&lt;/span&gt;~&amp;lt;link to your github repository&amp;gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;My result looks like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img17.imageshack.us/img17/4136/githubkl.png&quot; title=&quot;moderncv with github and twitter&quot; alt=&quot;result moderncv&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s really everything there is to it. You can do this with any image,
+LaTeX will scale it to any size you specify but naturally vector
+graphics will be the best option because you can scale them
+without loss of quality.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#8217;s what my document looks like when zoomed in very close to my github-line.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img225.imageshack.us/img225/8650/githubgr.png&quot; title=&quot;github icon scaled&quot; alt=&quot;result scaled&quot; /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Firstiwaslike: A Primer</title>
+    <link href="http://www.firstiwaslike.com/blog/2011/09/19/firstiwaslike-a-primer/"/>
+    <updated>2011-09-19T08:59:00+02:00</updated>
+    <id>http://www.firstiwaslike.com/blog/2011/09/19/firstiwaslike-a-primer</id>
+    <content type="html">&lt;p&gt;Everyone who has tried to achieve something with programming a computer
+knows the feeling when you want to do something with or you have deal with a technology that is new to you. Most of the time you have to get your head around a new way of thinking, a new tool, an unfamiliar API, code that someone else has written or a new programming syntax and at first most likely your feelings come close to the feeling the kitten on the left expresses in the picture below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img94.imageshack.us/img94/2758/firstiwaslike.jpg&quot; title=&quot;First I was like?!&quot; alt=&quot;First I was like?! Then I loled!&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But after some time occupying yourself with the new unknown most of the
+time you get it. And you&amp;#8217;re like „Oh Yeah! LOL!“. Like the kitten on the
+right.&lt;/p&gt;
+
+&lt;p&gt;This blog is about my „Oh Yeah! LOL!“-moments. Have fun!&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
