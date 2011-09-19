@@ -4,7 +4,7 @@
   <title>Firstiwaslike?!</title>
   <link href="http://www.firstiwaslike.com/atom.xml" rel="self"/>
   <link href="http://www.firstiwaslike.com/"/>
-  <updated>2011-09-19T12:14:46+02:00</updated>
+  <updated>2011-09-19T12:59:59+02:00</updated>
   <id>http://www.firstiwaslike.com/</id>
   <author>
     <name>Michael Klein</name>
@@ -13,7 +13,7 @@
 
   
   <entry>
-    <title>Using Social Media Icons in a LaTeX Document</title>
+    <title>Using Social Media Icons in a LaTeX document</title>
     <link href="http://www.firstiwaslike.com/blog/2011/09/19/using-social-media-icons-in-a-latex-document/"/>
     <updated>2011-09-19T10:59:00+02:00</updated>
     <id>http://www.firstiwaslike.com/blog/2011/09/19/using-social-media-icons-in-a-latex-document</id>
@@ -60,8 +60,8 @@ include github&amp;#8217;s octocat (saved as octocatvector.eps) and a link to yo
 
 &lt;p&gt;That&amp;#8217;s really everything there is to it. You can do this with any image,
 LaTeX will scale it to any size you specify but naturally vector
-graphics will be the best option because you can scale them to any size
-you want to without loss of quality.&lt;/p&gt;
+graphics will be the best option because you can scale them
+without loss of quality.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;#8217;s what my document looks like when zoomed in very close to my github-line.&lt;/p&gt;
 
