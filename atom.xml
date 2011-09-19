@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Firstiwaslike?!</title>
+  <link href="http://www.firstiwaslike.com/atom.xml" rel="self"/>
+  <link href="http://www.firstiwaslike.com/"/>
+  <updated>2011-09-19T10:04:27+02:00</updated>
+  <id>http://www.firstiwaslike.com/</id>
+  <author>
+    <name>Michael Klein</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Firstiwaslike: A Primer</title>
+    <link href="http://www.firstiwaslike.com/blog/2011/09/19/firstiwaslike-a-primer/"/>
+    <updated>2011-09-19T08:59:00+02:00</updated>
+    <id>http://www.firstiwaslike.com/blog/2011/09/19/firstiwaslike-a-primer</id>
+    <content type="html">&lt;p&gt;Everyone that has tried to achieve something with programming a computer
+knows the feeling when you want to do something with or you have deal with a technology that is new to you. Most of the time you have to get your head around a new way of thinking, a new tool, an unfamiliar API, code that someone else has written or a new programming syntax and at first most likely your feelings come close to the feeling the kitten on the left expresses in the picture below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img94.imageshack.us/img94/2758/firstiwaslike.jpg&quot; title=&quot;First I was like?!&quot; alt=&quot;First I was like?! Then I loled!&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But after some time occupying yourself with the new unknown most of the
+time you get it. And you&amp;#8217;re like „Oh Yeah! LOL!“. Like the kitten on the
+right.&lt;/p&gt;
+
+&lt;p&gt;This blog is about my „Oh Yeah! LOL!“-Moments. Have fun!&lt;/p&gt;
+</content>
+  </entry>
+  
+</feed>
