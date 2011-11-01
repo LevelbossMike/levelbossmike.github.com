@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Firstiwaslike?!</title>
+  <title>Getting Started With Torquebox 2.x for Fun and Profit - Firstiwaslike?!</title>
   <meta name="author" content="Michael Klein">
   
 
@@ -16,7 +16,7 @@
 
   
 
-  <link rel="canonical" href="http://www.firstiwaslike.com/index.html"/>
+  <link rel="canonical" href="http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/"/>
   <link href="/favicon.png" rel="shortcut icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -56,15 +56,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-
-
-
-  <article>
-    
+      <div>
+<article class="hentry">
+  
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/">Getting Started With Torquebox 2.x for Fun and Profit</a></h1>
+      <h1 class="entry-title">Getting Started With Torquebox 2.x for Fun and Profit</h1>
     
     
       <p class="meta">
@@ -82,7 +79,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I am a big fan of jRuby and I have been aware of the <a href="http://www.torquebox.org">Torquebox Application Server</a> for some time now but until recently never found the time to take it on a test drive on Vagrant and on Amazon&#8217;s EC2. Because I wasn&#8217;t familiar with the JBoss Application Server on what Torquebox is based on I ran into some problems and hopefully this blogpost will enable you to have a Rails 3.1 test application up and running a lot quicker than I did.</p>
+<div class="entry-content"><p>I am a big fan of jRuby and I have been aware of the <a href="http://www.torquebox.org">Torquebox Application Server</a> for some time now but until recently never found the time to take it on a test drive on Vagrant and on Amazon&#8217;s EC2. Because I wasn&#8217;t familiar with the JBoss Application Server on what Torquebox is based on I ran into some problems and hopefully this blogpost will enable you to have a Rails 3.1 test application up and running a lot quicker than I did.</p>
 
 <h2>Getting started on Vagrant</h2>
 
@@ -267,21 +264,16 @@ simpler. Just change into your application&#8217;s directory and run:</p>
 
 <p>Keep that in mind and spare yourself hours of digging around.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  
 
+<span class="byline author vcard">Posted by <span class="fn">Michael Klein</span></span>
 
-  </article>
-
-
-  <article>
-    
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/19/using-social-media-icons-in-a-latex-document/">Using Social Media Icons in a LaTeX Document</a></h1>
-    
-    
-      <p class="meta">
+      
 
 
 
@@ -291,126 +283,49 @@ simpler. Just change into your application&#8217;s directory and run:</p>
 
 
 
-<time datetime="2011-09-19T10:59:00+02:00" pubdate  data-updated="true" >Sep 19<span>th</span>, 2011</time></p>
+<time datetime="2011-11-01T16:30:00+01:00" pubdate  data-updated="true" >Nov 1<span>st</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cloudcomputing/'>CloudComputing</a>, <a class='category' href='/blog/categories/ec2/'>EC2</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/jruby/'>jRuby</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Recently I wrote a letter of application to a local software firm. With
-my letter of application I sent a CV and because I was applying for
-a position as a Ruby/Rails/Web developer writing the application in
-Word or Pages was not an option and geek cred aside, in my opinion everything of
-importance you write should be written in LaTeX just because it looks a lot nicer
- than your everyday WYSIWYG-Editor.</p>
-
-<p><img src="http://img836.imageshack.us/img836/6889/latexr.jpg" title="LaTeX, the most beautiful thing" alt="Latex a beautiful thing." /></p>
-
-<p>I ended up using <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/moderncv" title="moderncv">moderncv</a> (the classic version) for my cv and scrlttr2 out of <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/moderncv">komascript</a> for my application
-letter.</p>
-
-<p>moderncv comes with a header by default where you can put your contact
-information.</p>
-
-<p><img src="http://img4.imageshack.us/img4/2234/moderncvheader.png" title="Classic moderncv header" alt="default moderncv header" /></p>
-
-<p>I thought it would be nice to also put my GitHub and Twitter
-account data in the header. With corresponding icons of course. Surprisingly despite its serious degree of
-awesome LaTeX does not support GitHub
-or Twitter icons out of the box so I had to find a way to insert them
-manually.</p>
-
-<p>Turns out that&#8217;s pretty simple. LaTeX supports a way to include images
-and even vector graphics in text inline. You just have to specify which
-image you want to insert and the respective font-size to make it look
-seamless.</p>
-
-<p>Assuming you have a font-size of 12pt in your text and want to
-include github&#8217;s octocat (saved as octocatvector.eps) and a link to your github repository:</p>
-
-<figure role=code><figcaption><span>github-icon inline  </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-</pre></td><td class='code' width='100%'><pre><code class='latex'><div class='line'><span class="k">\includegraphics</span><span class="na">[height=12pt]</span><span class="nb">{</span>octocatvector.eps<span class="nb">}</span>~&lt;link to your github repository&gt;
-</div></code></pre></td></tr></table></div></figure>
-
-
-<p>My result looks like this.</p>
-
-<p><img src="http://img17.imageshack.us/img17/4136/githubkl.png" title="moderncv with github and twitter" alt="result moderncv" /></p>
-
-<p>That&#8217;s really everything there is to it. You can do this with any image,
-LaTeX will scale it to any size you specify but naturally vector
-graphics will be the best option because you can scale them
-without loss of quality.</p>
-
-<p>Here&#8217;s what my document looks like when zoomed in very close to my github-line.</p>
-
-<p><img src="http://img225.imageshack.us/img225/8650/githubgr.png" title="github icon scaled" alt="result scaled" /></p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/" data-via="LevelbossMike" data-counturl="http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/" >Tweet</a>
+  
+  
 </div>
-  
-  
 
-
-  </article>
-
-
-  <article>
     
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/19/firstiwaslike-a-primer/">Firstiwaslike: A Primer</a></h1>
-    
-    
-      <p class="meta">
+  </footer>
+</article>
 
-
-
-
-
-  
-
-
-
-<time datetime="2011-09-19T08:59:00+02:00" pubdate  data-updated="true" >Sep 19<span>th</span>, 2011</time></p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Everyone who has tried to achieve something with programming a computer
-knows the feeling when you want to do something with or you have deal with a technology that is new to you. Most of the time you have to get your head around a new way of thinking, a new tool, an unfamiliar API, code that someone else has written or a new programming syntax and at first most likely your feelings come close to the feeling the kitten on the left expresses in the picture below.</p>
-
-<p><img src="http://img94.imageshack.us/img94/2758/firstiwaslike.jpg" title="First I was like?!" alt="First I was like?! Then I loled!" /></p>
-
-<p>But after some time occupying yourself with the new unknown most of the
-time you get it. And you&#8217;re like „Oh Yeah! LOL!“. Like the kitten on the
-right.</p>
-
-<p>This blog is about my „Oh Yeah! LOL!“-moments. Have fun!</p>
-</div>
-  
-  
-
-
-  </article>
-
-<nav role="pagination">
-  <div>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</nav>
-
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread"><div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'firstiwaslike';
-    (function () {
-      var s = document.createElement('script'); s.async = true;
-      s.type = 'text/javascript';
-      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+  var disqus_shortname = 'firstiwaslike';
+  var disqus_identifier = 'http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/';
+  var disqus_url = 'http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/';
+  //var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
+
 <aside role=sidebar>
   
     <section>
@@ -435,7 +350,7 @@ right.</p>
 <section>
   <h1>Github Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/LevelbossMike">@LevelbossMike</a> on Github
@@ -465,7 +380,7 @@ right.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -483,6 +398,7 @@ right.</p>
 
   
 </aside>
+
 
     </div>
   </div>

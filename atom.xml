@@ -4,13 +4,205 @@
   <title>Firstiwaslike?!</title>
   <link href="http://www.firstiwaslike.com/atom.xml" rel="self"/>
   <link href="http://www.firstiwaslike.com/"/>
-  <updated>2011-09-19T17:14:00+02:00</updated>
+  <updated>2011-11-01T18:13:03+01:00</updated>
   <id>http://www.firstiwaslike.com/</id>
   <author>
     <name>Michael Klein</name>
     
   </author>
 
+  
+  <entry>
+    <title>Getting Started With Torquebox 2.x for Fun and Profit</title>
+    <link href="http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit/"/>
+    <updated>2011-11-01T16:30:00+01:00</updated>
+    <id>http://www.firstiwaslike.com/blog/2011/11/01/getting-started-with-torquebox-2-dot-x-for-fun-and-profit</id>
+    <content type="html">&lt;p&gt;I am a big fan of jRuby and I have been aware of the &lt;a href=&quot;http://www.torquebox.org&quot;&gt;Torquebox Application Server&lt;/a&gt; for some time now but until recently never found the time to take it on a test drive on Vagrant and on Amazon&amp;#8217;s EC2. Because I wasn&amp;#8217;t familiar with the JBoss Application Server on what Torquebox is based on I ran into some problems and hopefully this blogpost will enable you to have a Rails 3.1 test application up and running a lot quicker than I did.&lt;/p&gt;
+
+&lt;h2&gt;Getting started on Vagrant&lt;/h2&gt;
+
+&lt;p&gt;Ryan Bates of the famous &lt;a href=&quot;http://www.railscasts.com&quot;&gt;Railscasts&lt;/a&gt; featured &lt;a href=&quot;http://vagrantup.com&quot;&gt;Vagrant&lt;/a&gt; on one of his last episodes. In essence it&amp;#8217;s a way to try out your production set-up for your application without the hassle to start up a server instance on any cloud provider. It is also possible to provision your instances with tools like chef but that&amp;#8217;s not what this blogpost is about.&lt;/p&gt;
+
+&lt;p&gt;For a quick overview what Vagrant offers I suggest you go watch the &lt;a href=&quot;http://railscasts.com/episodes/292-virtual-machines-with-vagrant?autoplay=true&quot;&gt;screencast&lt;/a&gt; first. I had problems to start up the box Ryan uses in his screencast, but with &lt;a href=&quot;http://www.vagrantbox.es/26/&quot;&gt;another one&lt;/a&gt; everything worked as expected. After downloading the box setting running vagrant ist pretty easy. Just go to your app&amp;#8217;s directory and type:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;vagrant init ubuntu-1104-server-i386
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;vagrant up
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;vagrant ssh
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;h2&gt;On the server&lt;/h2&gt;
+
+&lt;p&gt;From this point on the steps to getting torquebox to run on EC2 and Vagrant are exactly the same, that&amp;#8217;s the point of Vagrant after all. On EC2 you have to start an Ubuntu instance of course. I usually use the &lt;a href=&quot;http://alestic.com/&quot;&gt; alestic &lt;/a&gt; AMIs.&lt;/p&gt;
+
+&lt;p&gt;First we update our sources:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;sudo apt-get update
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I wanted to install jRuby with rvm so I had to install git and ruby first to run rvm (&lt;a href=&quot;http://beginrescueend.com/&quot;&gt;Ruby Version Manager&lt;/a&gt;). Additionally we have to install some kind of jdk to install jruby. I choose openjdk-6. Openjdk-7 should work as well I guess. See &lt;a href=&quot;http://www.openjdk.org&quot;&gt; openjdk.org &lt;/a&gt; for Installation instructions but actually it&amp;#8217;s just another package that you install with apt-get.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;sudo apt-get install git-core ruby openjdk-6-jre
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;With that we are all set to install rvm and jruby.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;bash &amp;lt; &amp;lt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;After rvm is installed we have to reload our bashrc to be able to use rvm.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .bashrc
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Now to install jruby&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;rvm install jruby
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;After the installation is completed we want to use jruby and we will create a global gemset that torquebox will use (see the official &lt;a href=&quot;http://torquebox.org/news/2011/04/26/ashevillerb-preso/&quot;&gt; Torquebox blog &lt;/a&gt;).&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;rvm use jruby
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm gemset create torquebox
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rvm use jruby-1.6.5@torquebox &#8211;default
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;The default flag ensures we are using jruby with the torquebox gemset everytime we log into the machine.&lt;/p&gt;
+
+&lt;p&gt;Torquebox 2.x is available as a gem and we want to make use of this. Installing Torquebox consums a lot of system memory so we have to specify that the install has access to more memory than it has with the default settings.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;jruby -J-Xmx1024m -S gem install torquebox-server &#8211;pre &#8211;source http://torquebox.org/2x/builds/LATEST/gem-repo
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Instead of LATEST you could specify any build.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;jruby -J-Xmx1024m -S gem install torquebox-server &#8211;pre &#8211;source http://torquebox.org/2x/builds/591/gem-repo
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;With LATEST you will just get the last CI-Build of Torquebox. You have to take this into account when using our Gemfile later on.&lt;/p&gt;
+
+&lt;p&gt;Well and that&amp;#8217;s about everything there is to installing torquebox.&lt;/p&gt;
+
+&lt;h2&gt;Preparing your application for deployment on Torquebox&lt;/h2&gt;
+
+&lt;p&gt;You have to take to ensure your application is deployable to Torquebox.
+Torquebox provides templates for this (you can read more about that &lt;a href=&quot;http://torquebox.org/2x/builds/html-docs/web.html#rails&quot;&gt;here&lt;/a&gt;). The template resides in your torquebox-gem&amp;#8217;s folder. You can set a $TORQUEBOX_HOME variable temporarily to make it easier to access the template.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;TORQUEBOX_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;torquebox env torquebox_home&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;rails new myapp -m &lt;span class=&quot;nv&quot;&gt;$TORQUEBOX_HOME&lt;/span&gt;/share/rails/template.rb
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;To adapt an existing application please
+refer to the &lt;a href=&quot;http://torquebox.org/2x/builds/html-docs/&quot;&gt;torquebox documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Deploying and running an application on Torquebox&lt;/h2&gt;
+
+&lt;p&gt;Deploying a (torquebox ready) application on Torquebox couldn&amp;#8217;t be
+simpler. Just change into your application&amp;#8217;s directory and run:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;bash&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;  bundle install
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;  torquebox deploy
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;  torquebox run
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I had several problems to get my test application to run with torquebox. Every single one was my own fault and was due to my lack of understanding of the underlining JBoss-Server or different behaviour of Rails on Ubuntu compared to MacOS.&lt;/p&gt;
+
+&lt;p&gt;First of all Ubuntu does not come with a Javascript-runtime which is needed to run a Rails 3.1 application. Ryan talks about that in his screencast but his workaround to install &amp;#8216;therubyracer&amp;#8217;-gem won&amp;#8217;t work for a jruby-environment. There is actually a special javascript-gem for jruby, called &amp;#8216;therubyrhino&amp;#8217;. Specify this in your app&amp;#8217;s Gemfile instead of &amp;#8216;therubyracer&amp;#8217;.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;  &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:linux&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;therubyrhino&amp;#39;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;h2&gt;Accessing your application from localhost (Vagrant)&lt;/h2&gt;
+
+&lt;p&gt;Vagrant provides a way to access your VirtualBox-Instances from your localhost. Ryan talks about it on his Railscasts-Episode. You can configure Vagrant to forward ports from your virtual-instance to localhost in your Vagrantfile, Vagrant creates with the vagrant init command in your app&amp;#8217;s directory.&lt;/p&gt;
+
+&lt;p&gt;JBoss and Torquebox are accessible through port 8080 as default so we have to specify port-forwarding for this port:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forward_port&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;torquebox&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;This should make your vagrant instance accessible through the address localhost:8080. You can specify any port you want&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forward_port&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;torquebox&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Would make port 8080 of your vagrant-instance accessible throug localhost:3000 in your browser.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately this won&amp;#8217;t work for Torquebox. You have to bind Torquebox to 0.0.0.0 to make it accessible via the above-mentioned Vagrant feature.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;torquebox&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deploy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;your&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;torquebox&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;run&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Now everything should work as expected.&lt;/p&gt;
+
+&lt;h2&gt;Deploying your application to EC2&lt;/h2&gt;
+
+&lt;p&gt;The steps to get running on EC2 are nearly the same as on Vagrant. The only thing you have to remember is that port 8080 does not accept inbound connections on EC2&amp;#8217;s default security group. You have to open this port and you have to open port 22(ssh) to be able to log into the instance if your using a custom security group.&lt;/p&gt;
+
+&lt;p&gt;When running the application from EC2 you also have to bind it to
+0.0.0.0. Binding to an Elastic-IP won&amp;#8217;t work.&lt;/p&gt;
+
+&lt;h2&gt;Other major problems&lt;/h2&gt;
+
+&lt;p&gt;I don&amp;#8217;t know if I am the only one who was not aware of the fact that though on MacOS Ruby&amp;#8217;s require statement is NOT case sensitive on Ubuntu it is. I tried to require the ruby-geocoder in my test-application and&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Geocoder&amp;#39;&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;was fine on my development machine but on Ubuntu hell broke lose because rails wasn&amp;#8217;t able to locate my geocoder gem though it was installed. On Ubuntu you really have to require case sensitive.&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;geocoder&amp;#39;&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Keep that in mind and spare yourself hours of digging around.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Using Social Media Icons in a LaTeX document</title>
