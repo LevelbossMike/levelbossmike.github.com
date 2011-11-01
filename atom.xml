@@ -4,7 +4,7 @@
   <title>Firstiwaslike?!</title>
   <link href="http://www.firstiwaslike.com/atom.xml" rel="self"/>
   <link href="http://www.firstiwaslike.com/"/>
-  <updated>2011-11-01T18:13:03+01:00</updated>
+  <updated>2011-11-01T18:19:42+01:00</updated>
   <id>http://www.firstiwaslike.com/</id>
   <author>
     <name>Michael Klein</name>
@@ -186,7 +186,7 @@ simpler. Just change into your application&amp;#8217;s directory and run:&lt;/p&
 
 &lt;h2&gt;Other major problems&lt;/h2&gt;
 
-&lt;p&gt;I don&amp;#8217;t know if I am the only one who was not aware of the fact that though on MacOS Ruby&amp;#8217;s require statement is NOT case sensitive on Ubuntu it is. I tried to require the ruby-geocoder in my test-application and&lt;/p&gt;
+&lt;p&gt;I don&amp;#8217;t know if I am the only one who was not aware of the fact that though on MacOS Ruby&amp;#8217;s require statement is NOT case sensitive but on Ubuntu it is. I tried to require the ruby-geocoder in my test-application and&lt;/p&gt;
 
 &lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Geocoder&amp;#39;&lt;/span&gt;
